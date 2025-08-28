@@ -26,25 +26,25 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/servicos" element={<Services />} />
-              <Route path="/sobre" element={<About />} />
-              <Route path="/contato" element={<Contact />} />
-              <Route path="/servicos/automacao" element={<Automacao />} />
-              <Route path="/servicos/certificado-digital" element={<CertificadoDigital />} />
-              <Route path="/servicos/consultoria" element={<Consultoria />} />
-              <Route path="/servicos/redes" element={<Redes />} />
-              <Route path="/servicos/suporte" element={<Suporte />} />
-              <Route path="/servicos/telefonia" element={<Telefonia />} />
-              <Route path="/servicos/virtualizacao" element={<Virtualizacao />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
+        <BrowserRouter>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/servicos" element={<Services />} />
+                <Route path="/sobre" element={<About />} />
+                <Route path="/contato" element={<Contact />} />
+                <Route path="/servicos/automacao" element={<div className="scroll-to-top"><Automacao /></div>} />
+                <Route path="/servicos/certificado-digital" element={<div className="scroll-to-top"><CertificadoDigital /></div>} />
+                <Route path="/servicos/consultoria" element={<div className="scroll-to-top"><Consultoria /></div>} />
+                <Route path="/servicos/redes" element={<div className="scroll-to-top"><Redes /></div>} />
+                <Route path="/servicos/suporte" element={<div className="scroll-to-top"><Suporte /></div>} />
+                <Route path="/servicos/telefonia" element={<div className="scroll-to-top"><Telefonia /></div>} />
+                <Route path="/servicos/virtualizacao" element={<div className="scroll-to-top"><Virtualizacao /></div>} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
           <Footer />
           <WhatsAppFloat />
         </div>

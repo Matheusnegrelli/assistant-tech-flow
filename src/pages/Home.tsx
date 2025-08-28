@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, Zap, Users, Target } from "lucide-react";
+import { ArrowRight, Shield, Zap, Users, Target, MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
@@ -193,6 +193,155 @@ export default function Home() {
                   ajudando empresas a alcançar seus objetivos através da tecnologia 
                   da informação com excelência, segurança e eficiência.
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 bg-background-alt">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+              <span className="text-gradient">Entre em Contato</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Estamos prontos para ajudar você a encontrar as melhores soluções 
+              tecnológicas para o seu negócio. Fale conosco!
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div>
+              <h3 className="text-2xl font-bold mb-8 text-gradient">Informações de Contato</h3>
+              
+              <div className="space-y-6 mb-8">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Endereço</h4>
+                    <p className="text-muted-foreground">Rua Edmilson Coutinho, Nº 27, São Silvano</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Telefone</h4>
+                    <p className="text-muted-foreground">(27) 3121-9410</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">E-mail</h4>
+                    <p className="text-muted-foreground">contato@assistant.com.br</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Horário</h4>
+                    <p className="text-muted-foreground">Seg-Sex: 8h às 17:30h</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="service-card">
+                <h4 className="text-xl font-semibold mb-4 text-gradient">Fale conosco pelo WhatsApp</h4>
+                <p className="text-muted-foreground mb-6">
+                  Para um atendimento mais rápido, entre em contato diretamente pelo WhatsApp.
+                </p>
+                <Button onClick={() => window.open("https://wa.me/5527999999999?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank")} className="btn-hero w-full">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Abrir WhatsApp
+                </Button>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              <div className="service-card">
+                <h3 className="text-2xl font-bold mb-6 text-gradient">Envie sua Mensagem</h3>
+                
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  // Simulate form submission
+                  const form = e.target as HTMLFormElement;
+                  const formData = new FormData(form);
+                  console.log('Form submitted:', Object.fromEntries(formData));
+                  form.reset();
+                  // You can add toast notification here
+                }} className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      Nome Completo *
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Seu nome completo"
+                      required
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      E-mail *
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="seu@email.com"
+                      required
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                      Telefone
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="(27) 99999-9999"
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      Mensagem *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      placeholder="Descreva como podemos ajudar você..."
+                      rows={6}
+                      required
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
+                    />
+                  </div>
+
+                  <Button type="submit" className="btn-hero w-full">
+                    <Send className="w-5 h-5 mr-2" />
+                    Enviar Mensagem
+                  </Button>
+                </form>
               </div>
             </div>
           </div>

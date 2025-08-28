@@ -151,4 +151,19 @@
   .text-gradient-accent {
     @apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent;
   }
+  
+  /* Scroll behavior fix */
+  .scroll-to-top {
+    scroll-behavior: smooth;
+  }
+  
+  .scroll-to-top::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+  }
 }
