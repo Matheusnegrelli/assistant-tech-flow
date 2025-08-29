@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
 import { useToast } from "@/hooks/use-toast";
 import { sendEmail } from "@/lib/emailjs";
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback } from "react";
 
-const Home = memo(() => {
+export default function Home() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -420,8 +420,4 @@ const Home = memo(() => {
       </section>
     </div>
   );
-});
-
-Home.displayName = 'Home';
-
-export default Home;
+}
