@@ -17,6 +17,12 @@ export const sendEmail = async (templateParams: {
   message: string;
 }) => {
   try {
+    console.log('=== EmailJS Debug ===');
+    console.log('Service ID:', emailJSConfig.serviceId);
+    console.log('Template ID:', emailJSConfig.templateId);
+    console.log('Public Key:', emailJSConfig.publicKey);
+    console.log('Original params:', templateParams);
+    
     // Mapeando para as variáveis do seu template EmailJS
     const emailParams = {
       name: templateParams.from_name,
@@ -32,6 +38,8 @@ export const sendEmail = async (templateParams: {
       })
     };
     
+    console.log('Mapped emailParams:', emailParams);
+    
     const result = await emailjs.send(
       emailJSConfig.serviceId,
       emailJSConfig.templateId,
@@ -42,7 +50,13 @@ export const sendEmail = async (templateParams: {
     console.log('Email sent successfully:', result);
     return { success: true, result };
   } catch (error) {
-    console.error('Email send error:', error);
+    console.error('EmailJS Error Details:', {
+      error,
+      message: error?.text || error?.message,
+      status: error?.status,
+      serviceId: emailJSConfig.serviceId,
+      templateId: emailJSConfig.templateId
+    });
     return { success: false, error };
   }
 };
