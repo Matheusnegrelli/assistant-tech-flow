@@ -19,7 +19,8 @@ export default function Contact() {
     e.preventDefault();
     
     try {
-      const { error } = await supabase
+      // Save to database
+      const { error: dbError } = await supabase
         .from('contact_messages')
         .insert([
           {
@@ -30,20 +31,32 @@ export default function Contact() {
           }
         ]);
 
-      if (error) {
-        console.error('Error inserting contact message:', error);
-        toast({
-          title: "Erro ao enviar mensagem",
-          description: "Ocorreu um erro. Tente novamente ou entre em contato pelo WhatsApp.",
-          variant: "destructive"
-        });
-        return;
+      if (dbError) {
+        console.error('Error saving to database:', dbError);
       }
 
-      toast({
-        title: "Mensagem enviada!",
-        description: "Entraremos em contato em breve.",
+      // Send email
+      const { data, error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message
+        }
       });
+
+      if (emailError) {
+        console.error('Error sending email:', emailError);
+        toast({
+          title: "Mensagem salva!",
+          description: "Sua mensagem foi salva, mas houve um problema no envio do email. Entraremos em contato em breve.",
+        });
+      } else {
+        toast({
+          title: "Mensagem enviada!",
+          description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
+        });
+      }
       
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
