@@ -265,7 +265,7 @@ export default function Home() {
                 <p className="text-muted-foreground mb-6">
                   Para um atendimento mais rápido, entre em contato diretamente pelo WhatsApp.
                 </p>
-                <Button onClick={() => window.location.href = "https://web.whatsapp.com/send?phone=552731219410&text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno."} className="btn-hero w-full">
+                <Button onClick={() => window.open("https://wa.me/552731219410?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank")} className="btn-hero w-full">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Abrir WhatsApp
                 </Button>

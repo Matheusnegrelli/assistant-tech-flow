@@ -17,8 +17,7 @@ export default function Header() {
   const isActive = (href: string) => location.pathname === href;
 
   const handleWhatsApp = () => {
-    const whatsappUrl = "https://web.whatsapp.com/send?phone=552731219410&text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.";
-    window.location.href = whatsappUrl;
+    window.open("https://wa.me/5527999999999?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank");
   };
 
   return (
