@@ -2,10 +2,109 @@ import { ArrowRight, Shield, Zap, Users, Target, MapPin, Phone, Mail, Clock, Mes
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 export default function Home() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleRequestQuote = () => {
     window.location.href = "/contato";
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
+    const message = formData.get('message') as string;
+
+    console.log('=== FORM SUBMISSION STARTED ===');
+    console.log('Form submitted with data:', { name, email, phone, message });
+
+    try {
+      // Validate required fields
+      if (!name || !email || !message) {
+        toast({
+          title: "Campos obrigatórios",
+          description: "Por favor, preencha todos os campos obrigatórios.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      console.log('Supabase client available:', !!supabase);
+      console.log('=== VALIDATION PASSED ===');
+      
+      // Save to database
+      console.log('Saving to database...');
+      const { data: savedData, error: saveError } = await supabase
+        .from('contact_messages')
+        .insert([
+          {
+            name,
+            email,
+            phone: phone || null,
+            message,
+          }
+        ]);
+
+      if (saveError) {
+        console.error('Database save error:', saveError);
+        throw saveError;
+      }
+
+      console.log('Successfully saved to database');
+
+      // Try to send email
+      try {
+        console.log('Invoking edge function...');
+        const { data, error: emailError } = await supabase.functions.invoke('send-contact-email', {
+          body: { name, email, phone, message }
+        });
+
+        console.log('Edge function response:', { data, emailError });
+
+        if (emailError) {
+          console.error('Error sending email:', emailError);
+          toast({
+            title: "Mensagem recebida!",
+            description: "Sua mensagem foi salva com sucesso. Entraremos em contato em breve pelo WhatsApp ou telefone.",
+          });
+        } else {
+          console.log('Email sent successfully:', data);
+          toast({
+            title: "Mensagem enviada!",
+            description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
+          });
+        }
+      } catch (emailError) {
+        console.error('Exception during email sending:', emailError);
+        toast({
+          title: "Mensagem recebida!",
+          description: "Sua mensagem foi salva com sucesso. Entraremos em contato em breve pelo WhatsApp ou telefone.",
+        });
+      }
+
+      // Reset form
+      form.reset();
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Erro",
+        description: "Ocorreu um erro ao enviar sua mensagem. Tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [
@@ -277,15 +376,7 @@ export default function Home() {
               <div className="service-card">
                 <h3 className="text-2xl font-bold mb-6 text-gradient">Envie sua Mensagem</h3>
                 
-                <form onSubmit={(e) => {
-                  e.preventDefault();
-                  // Simulate form submission
-                  const form = e.target as HTMLFormElement;
-                  const formData = new FormData(form);
-                  console.log('Form submitted:', Object.fromEntries(formData));
-                  form.reset();
-                  // You can add toast notification here
-                }} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
                       Nome Completo *
@@ -296,7 +387,8 @@ export default function Home() {
                       type="text"
                       placeholder="Seu nome completo"
                       required
-                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      disabled={isSubmitting}
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:opacity-50"
                     />
                   </div>
 
@@ -310,7 +402,8 @@ export default function Home() {
                       type="email"
                       placeholder="seu@email.com"
                       required
-                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      disabled={isSubmitting}
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:opacity-50"
                     />
                   </div>
 
@@ -323,7 +416,8 @@ export default function Home() {
                       name="phone"
                       type="tel"
                       placeholder="(27) 99999-9999"
-                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      disabled={isSubmitting}
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:opacity-50"
                     />
                   </div>
 
@@ -337,13 +431,14 @@ export default function Home() {
                       placeholder="Descreva como podemos ajudar você..."
                       rows={6}
                       required
-                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
+                      disabled={isSubmitting}
+                      className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical disabled:opacity-50"
                     />
                   </div>
 
-                  <Button type="submit" className="btn-hero w-full">
+                  <Button type="submit" className="btn-hero w-full" disabled={isSubmitting}>
                     <Send className="w-5 h-5 mr-2" />
-                    Enviar Mensagem
+                    {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                   </Button>
                 </form>
               </div>
