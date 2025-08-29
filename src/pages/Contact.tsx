@@ -52,13 +52,32 @@ export default function Contact() {
         console.log('Successfully saved to database');
       }
 
-      // Send email (desabilitado temporariamente - sem conta Resend)
-      console.log('Email sending disabled - only saving to database');
-      
-      toast({
-        title: "Mensagem salva!",
-        description: "Sua mensagem foi salva com sucesso. Entraremos em contato em breve.",
+      // Send email via edge function
+      console.log('Invoking edge function...');
+      const { data, error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message
+        }
       });
+
+      console.log('Edge function response:', { data, emailError });
+
+      if (emailError) {
+        console.error('Error sending email:', emailError);
+        toast({
+          title: "Mensagem salva!",
+          description: "Sua mensagem foi salva, mas houve um problema no envio do email. Entraremos em contato em breve.",
+        });
+      } else {
+        console.log('Email sent successfully:', data);
+        toast({
+          title: "Mensagem enviada!",
+          description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
+        });
+      }
       
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
