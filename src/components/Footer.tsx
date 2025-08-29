@@ -104,7 +104,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-slate-700 mt-8 pt-6 text-center">
           <p className="text-slate-400">
-            © 2023 Assistant Tecno. Todos os direitos reservados.
+            © 2025 Assistant Tecno. Todos os direitos reservados.
           </p>
         </div>
       </div>

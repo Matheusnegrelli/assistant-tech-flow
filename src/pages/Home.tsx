@@ -82,7 +82,11 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-background via-background-alt to-background py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15),transparent_50%)]"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -261,7 +265,7 @@ export default function Home() {
                 <p className="text-muted-foreground mb-6">
                   Para um atendimento mais rápido, entre em contato diretamente pelo WhatsApp.
                 </p>
-                <Button onClick={() => window.open("https://wa.me/5527999999999?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank")} className="btn-hero w-full">
+                <Button onClick={() => window.open("https://wa.me/552731219410?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank")} className="btn-hero w-full">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Abrir WhatsApp
                 </Button>
