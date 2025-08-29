@@ -19,10 +19,17 @@ export const sendEmail = async (templateParams: {
   try {
     // Mapeando para as variáveis do seu template EmailJS
     const emailParams = {
-      nome: templateParams.from_name,
+      name: templateParams.from_name,
       email: templateParams.from_email,
-      telefone: templateParams.phone || 'Não informado',
-      mensagem: templateParams.message
+      phone: templateParams.phone || 'Não informado',
+      message: templateParams.message,
+      time: new Date().toLocaleString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
     };
     
     const result = await emailjs.send(
