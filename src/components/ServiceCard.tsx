@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ interface ServiceCardProps {
   href: string;
 }
 
-export default function ServiceCard({ icon, title, description, href }: ServiceCardProps) {
+const ServiceCard = memo(({ icon, title, description, href }: ServiceCardProps) => {
   return (
     <div className="service-card group">
       <div className="text-4xl mb-4">{icon}</div>
@@ -28,4 +29,8 @@ export default function ServiceCard({ icon, title, description, href }: ServiceC
       </Link>
     </div>
   );
-}
+});
+
+ServiceCard.displayName = 'ServiceCard';
+
+export default ServiceCard;

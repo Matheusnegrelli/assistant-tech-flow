@@ -4,16 +4,17 @@ import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
 import { useToast } from "@/hooks/use-toast";
 import { sendEmail } from "@/lib/emailjs";
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 
-export default function Home() {
+const Home = memo(() => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const handleRequestQuote = () => {
+  
+  const handleRequestQuote = useCallback(() => {
     window.location.href = "/contato";
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -76,7 +77,7 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [toast]);
 
   const services = [
     {
@@ -419,4 +420,8 @@ export default function Home() {
       </section>
     </div>
   );
-}
+});
+
+Home.displayName = 'Home';
+
+export default Home;

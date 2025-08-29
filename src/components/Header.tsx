@@ -17,6 +17,7 @@ export default function Header() {
               src="/lovable-uploads/4fea8bfb-5eb8-41dd-a1f2-9c40be9dae24.png" 
               alt="Assistant Tecno" 
               className="h-10 w-auto"
+              loading="lazy"
             />
             <div className="flex flex-col">
               <span className="font-bold text-xl text-gradient">Assistant Tecno</span>
