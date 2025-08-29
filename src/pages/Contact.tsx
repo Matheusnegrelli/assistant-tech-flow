@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { sendEmail } from "@/lib/emailjs";
 
 export default function Contact() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,82 +18,47 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     console.log('=== FORM SUBMISSION STARTED ===');
     console.log('Form submitted with data:', formData);
-    console.log('Supabase client available:', !!supabase);
     
     // Validação básica
     if (!formData.name || !formData.email || !formData.message) {
-      console.error('Campos obrigatórios não preenchidos');
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha nome, email e mensagem.",
         variant: "destructive"
       });
+      setIsSubmitting(false);
       return;
     }
     
-    console.log('=== VALIDATION PASSED ===');
-    
     try {
-      // Save to database
-      console.log('Saving to database...');
-      const { error: dbError } = await supabase
-        .from('contact_messages')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone || null,
-            message: formData.message
-          }
-        ]);
+      // Send email using EmailJS
+      console.log('Sending email via EmailJS...');
+      const emailResult = await sendEmail({
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || '',
+        message: formData.message
+      });
 
-      if (dbError) {
-        console.error('Error saving to database:', dbError);
-      } else {
-        console.log('Successfully saved to database');
-      }
-
-      // Send email via edge function
-      console.log('Invoking edge function...');
-      try {
-        const { data, error: emailError } = await supabase.functions.invoke('send-contact-email', {
-          body: {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            message: formData.message
-          }
-        });
-
-        console.log('Edge function response:', { data, emailError });
-
-        if (emailError) {
-          console.error('Error sending email:', emailError);
-          // Mostrar sucesso mesmo se o email falhar, pois a mensagem foi salva
-          toast({
-            title: "Mensagem recebida!",
-            description: "Sua mensagem foi salva com sucesso. Entraremos em contato em breve pelo WhatsApp ou telefone.",
-          });
-        } else {
-          console.log('Email sent successfully:', data);
-          toast({
-            title: "Mensagem enviada!",
-            description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
-          });
-        }
-      } catch (emailError) {
-        console.error('Exception during email sending:', emailError);
-        // Mensagem foi salva no banco, então mostrar sucesso
+      if (emailResult.success) {
+        console.log('Email sent successfully via EmailJS');
         toast({
-          title: "Mensagem recebida!",
-          description: "Sua mensagem foi salva com sucesso. Entraremos em contato em breve pelo WhatsApp ou telefone.",
+          title: "Mensagem enviada!",
+          description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        console.error('EmailJS error:', emailResult.error);
+        toast({
+          title: "Erro ao enviar email",
+          description: "Ocorreu um erro ao enviar o email. Tente novamente ou entre em contato pelo WhatsApp.",
+          variant: "destructive"
         });
       }
-      
-      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -100,6 +66,8 @@ export default function Contact() {
         description: "Ocorreu um erro. Tente novamente ou entre em contato pelo WhatsApp.",
         variant: "destructive"
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -235,9 +203,9 @@ export default function Contact() {
                   />
                 </div>
 
-                <Button type="submit" className="btn-hero w-full">
+                <Button type="submit" className="btn-hero w-full" disabled={isSubmitting}>
                   <Send className="w-5 h-5 mr-2" />
-                  Enviar Mensagem
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                 </Button>
               </form>
             </div>

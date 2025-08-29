@@ -2,8 +2,8 @@ import { ArrowRight, Shield, Zap, Users, Target, MapPin, Phone, Mail, Clock, Mes
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { sendEmail } from "@/lib/emailjs";
 import { useState } from "react";
 
 export default function Home() {
@@ -39,61 +39,32 @@ export default function Home() {
         return;
       }
 
-      console.log('Supabase client available:', !!supabase);
       console.log('=== VALIDATION PASSED ===');
       
-      // Save to database
-      console.log('Saving to database...');
-      const { data: savedData, error: saveError } = await supabase
-        .from('contact_messages')
-        .insert([
-          {
-            name,
-            email,
-            phone: phone || null,
-            message,
-          }
-        ]);
+      // Send email using EmailJS
+      console.log('Sending email via EmailJS...');
+      const emailResult = await sendEmail({
+        from_name: name,
+        from_email: email,
+        phone: phone || '',
+        message: message
+      });
 
-      if (saveError) {
-        console.error('Database save error:', saveError);
-        throw saveError;
-      }
-
-      console.log('Successfully saved to database');
-
-      // Try to send email
-      try {
-        console.log('Invoking edge function...');
-        const { data, error: emailError } = await supabase.functions.invoke('send-contact-email', {
-          body: { name, email, phone, message }
-        });
-
-        console.log('Edge function response:', { data, emailError });
-
-        if (emailError) {
-          console.error('Error sending email:', emailError);
-          toast({
-            title: "Mensagem recebida!",
-            description: "Sua mensagem foi salva com sucesso. Entraremos em contato em breve pelo WhatsApp ou telefone.",
-          });
-        } else {
-          console.log('Email sent successfully:', data);
-          toast({
-            title: "Mensagem enviada!",
-            description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
-          });
-        }
-      } catch (emailError) {
-        console.error('Exception during email sending:', emailError);
+      if (emailResult.success) {
+        console.log('Email sent successfully via EmailJS');
         toast({
-          title: "Mensagem recebida!",
-          description: "Sua mensagem foi salva com sucesso. Entraremos em contato em breve pelo WhatsApp ou telefone.",
+          title: "Mensagem enviada!",
+          description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
+        });
+        form.reset();
+      } else {
+        console.error('EmailJS error:', emailResult.error);
+        toast({
+          title: "Erro ao enviar email",
+          description: "Ocorreu um erro ao enviar o email. Tente novamente ou entre em contato pelo WhatsApp.",
+          variant: "destructive"
         });
       }
-
-      // Reset form
-      form.reset();
 
     } catch (error) {
       console.error('Form submission error:', error);
