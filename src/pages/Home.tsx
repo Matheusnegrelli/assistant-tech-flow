@@ -159,10 +159,10 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-foreground">Soluções tecnológicas</span><br />
-              <span className="text-foreground">inovadoras para impulsionar</span><br />
-              <span className="text-foreground">seu negócio</span>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight text-gradient">
+              Soluções tecnológicas<br />
+              inovadoras para impulsionar<br />
+              seu negócio
             </h1>
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
               com eficiência e segurança
