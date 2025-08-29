@@ -20,6 +20,7 @@ export default function Contact() {
     
     console.log('=== FORM SUBMISSION STARTED ===');
     console.log('Form submitted with data:', formData);
+    console.log('Supabase client available:', !!supabase);
     
     // Validação básica
     if (!formData.name || !formData.email || !formData.message) {
@@ -31,6 +32,8 @@ export default function Contact() {
       });
       return;
     }
+    
+    console.log('=== VALIDATION PASSED ===');
     
     try {
       // Save to database
