@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { Resend } from "npm:resend@2.0.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -10,6 +9,7 @@ const corsHeaders = {
 serve(async (req: Request) => {
   console.log("=== Edge function called ===");
   console.log("Method:", req.method);
+  console.log("URL:", req.url);
   
   if (req.method === "OPTIONS") {
     console.log("Handling OPTIONS request");
@@ -30,27 +30,47 @@ serve(async (req: Request) => {
   try {
     console.log("=== Processing POST request ===");
     
+    // Check API key first
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     console.log("API Key exists:", !!resendApiKey);
+    console.log("API Key length:", resendApiKey?.length || 0);
     
     if (!resendApiKey) {
-      console.error("No API key found");
-      return new Response(JSON.stringify({ error: "API key not configured" }), {
+      console.error("No RESEND_API_KEY found");
+      return new Response(JSON.stringify({ 
+        error: "API key not configured",
+        details: "RESEND_API_KEY environment variable not found"
+      }), {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
 
-    console.log("Parsing request body...");
+    console.log("Reading request body...");
     const body = await req.json();
-    console.log("Body received:", { ...body, message: body.message?.substring(0, 50) + "..." });
+    console.log("Body received:", JSON.stringify(body, null, 2));
     
     const { name, email, phone, message } = body;
 
+    // Validate required fields
+    if (!name || !email || !message) {
+      console.error("Missing required fields");
+      return new Response(JSON.stringify({ 
+        error: "Missing required fields",
+        required: ["name", "email", "message"]
+      }), {
+        status: 400,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    console.log("Importing Resend...");
+    const { Resend } = await import("npm:resend@2.0.0");
+    
     console.log("Creating Resend client...");
     const resend = new Resend(resendApiKey);
 
-    console.log("Sending email...");
+    console.log("Preparing email data...");
     const emailData = {
       from: "Contato Site <onboarding@resend.dev>",
       to: ["matheusnegrellim@gmail.com"],
@@ -68,13 +88,14 @@ serve(async (req: Request) => {
       `,
     };
 
+    console.log("Sending email...");
     const emailResponse = await resend.emails.send(emailData);
-    console.log("Email response:", emailResponse);
+    console.log("Email response:", JSON.stringify(emailResponse, null, 2));
 
     if (emailResponse.error) {
-      console.error("Resend error:", emailResponse.error);
+      console.error("Resend API error:", emailResponse.error);
       return new Response(JSON.stringify({ 
-        error: "Failed to send email",
+        error: "Email service error",
         details: emailResponse.error 
       }), {
         status: 500,
@@ -93,15 +114,17 @@ serve(async (req: Request) => {
     });
 
   } catch (error: any) {
-    console.error("=== ERROR ===");
+    console.error("=== CRITICAL ERROR ===");
     console.error("Error name:", error.name);
     console.error("Error message:", error.message);
     console.error("Error stack:", error.stack);
+    console.error("Error cause:", error.cause);
     
     return new Response(JSON.stringify({ 
       error: "Internal server error",
       message: error.message,
-      type: error.name
+      type: error.name,
+      stack: error.stack
     }), {
       status: 500,
       headers: { "Content-Type": "application/json", ...corsHeaders },
