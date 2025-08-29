@@ -8,18 +8,20 @@ import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import ScrollToTop from "./components/ScrollToTop";
 
-// Lazy loading das páginas para melhor performance
-const Home = lazy(() => import("./pages/Home"));
-const Services = lazy(() => import("./pages/Services"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Automacao = lazy(() => import("./pages/services/Automacao"));
-const CertificadoDigital = lazy(() => import("./pages/services/CertificadoDigital"));
-const Consultoria = lazy(() => import("./pages/services/Consultoria"));
-const Redes = lazy(() => import("./pages/services/Redes"));
-const Suporte = lazy(() => import("./pages/services/Suporte"));
-const Telefonia = lazy(() => import("./pages/services/Telefonia"));
-const Virtualizacao = lazy(() => import("./pages/services/Virtualizacao"));
+// Imports diretos para páginas principais (carregamento instantâneo)
+import Home from "./pages/Home";
+import Services from "./pages/Services";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Automacao from "./pages/services/Automacao";
+import CertificadoDigital from "./pages/services/CertificadoDigital";
+import Consultoria from "./pages/services/Consultoria";
+import Redes from "./pages/services/Redes";
+import Suporte from "./pages/services/Suporte";
+import Telefonia from "./pages/services/Telefonia";
+import Virtualizacao from "./pages/services/Virtualizacao";
+
+// Apenas NotFound fica lazy (raramente usado)
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Componente de loading otimizado
