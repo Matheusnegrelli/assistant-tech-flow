@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
@@ -13,90 +11,35 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Links Rápidos</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-blue-400 mr-2">›</span>
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-blue-400 mr-2">›</span>
-                  Serviços
-                </Link>
-              </li>
-              <li>
-                <Link to="/sobre" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-blue-400 mr-2">›</span>
-                  Sobre Nós
-                </Link>
-              </li>
-              <li>
-                <Link to="/contato" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-blue-400 mr-2">›</span>
-                  Contato
-                </Link>
-              </li>
+            <h4 className="text-lg font-semibold mb-4 text-white">Contato</h4>
+            <ul className="space-y-2 text-slate-300">
+              <li>📍 Rua Edmilson Coutinho, Nº 27, São Silvano</li>
+              <li>📞 (27) 3121-9410</li>
+              <li>✉️ contato@assistant.com.br</li>
+              <li>🕒 Seg-Sex: 8h às 17:30h</li>
             </ul>
           </div>
 
-          {/* Services Column 1 */}
+          {/* Services */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Nossos Serviços</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/servicos/automacao" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-green-400 mr-2">›</span>
-                  Automação
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos/certificado-digital" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-green-400 mr-2">›</span>
-                  Certificado Digital
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos/consultoria" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-green-400 mr-2">›</span>
-                  Consultoria em TI
-                </Link>
-              </li>
+            <ul className="space-y-2 text-slate-300">
+              <li>• Automação</li>
+              <li>• Certificado Digital</li>
+              <li>• Consultoria em TI</li>
+              <li>• Redes Corporativas</li>
             </ul>
           </div>
 
-          {/* Services Column 2 */}
+          {/* More Services */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white opacity-0">Serviços</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/servicos/redes" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-green-400 mr-2">›</span>
-                  Redes Corporativas
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos/suporte" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-green-400 mr-2">›</span>
-                  Suporte Técnico
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos/telefonia" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-green-400 mr-2">›</span>
-                  Telefonia IP
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos/virtualizacao" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                  <span className="text-green-400 mr-2">›</span>
-                  Virtualização
-                </Link>
-              </li>
+            <ul className="space-y-2 text-slate-300">
+              <li>• Suporte Técnico</li>
+              <li>• Telefonia IP</li>
+              <li>• Virtualização</li>
             </ul>
           </div>
         </div>
