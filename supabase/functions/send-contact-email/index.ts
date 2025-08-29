@@ -44,15 +44,19 @@ const handler = async (req: Request): Promise<Response> => {
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     console.log("RESEND_API_KEY exists:", !!resendApiKey);
     console.log("RESEND_API_KEY length:", resendApiKey?.length || 0);
+    console.log("First 10 chars of API key:", resendApiKey?.substring(0, 10) || 'undefined');
     
     if (!resendApiKey) {
+      console.error("RESEND_API_KEY not found!");
       throw new Error("RESEND_API_KEY not found in environment variables");
     }
 
+    console.log("Creating Resend instance...");
     const resend = new Resend(resendApiKey);
     
+    console.log("Parsing request body...");
     const { name, email, phone, message }: ContactRequest = await req.json();
-    console.log("Received contact form submission:", { name, email, phone: !!phone });
+    console.log("Received contact form submission:", { name, email, phone: !!phone, messageLength: message?.length });
 
     // Send email to matheusnegrellim@gmail.com
     console.log("Sending email via Resend...");
