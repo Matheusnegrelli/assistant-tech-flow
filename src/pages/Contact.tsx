@@ -27,7 +27,8 @@ export default function Contact() {
   };
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/552731219410?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank");
+    const whatsappUrl = "https://web.whatsapp.com/send?phone=552731219410&text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.";
+    window.location.href = whatsappUrl;
   };
 
   const contactInfo = [
