@@ -9,11 +9,6 @@ export default function Telefonia() {
       description: "Economia de até 60% na conta telefônica com tarifas mais baixas e ligações gratuitas entre ramais."
     },
     {
-      icon: Smartphone,
-      title: "Ramais Móveis",
-      description: "Acesse seu ramal de qualquer lugar do mundo através de aplicativo móvel ou softphone."
-    },
-    {
       icon: Mic,
       title: "URA Inteligente",
       description: "Sistema de atendimento automático para direcionar chamadas e melhorar a experiência do cliente."
@@ -44,7 +39,7 @@ export default function Telefonia() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {benefits.map((benefit, index) => (
             <div key={index} className="service-card text-center">
               <div className="mx-auto w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
@@ -70,27 +65,6 @@ export default function Telefonia() {
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                 <div>
-                  <h3 className="font-semibold mb-1">Conferência</h3>
-                  <p className="text-muted-foreground text-sm">Realize conferências com múltiplos participantes</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                <div>
-                  <h3 className="font-semibold mb-1">Caixa Postal</h3>
-                  <p className="text-muted-foreground text-sm">Receba mensagens por e-mail quando não atender</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                <div>
-                  <h3 className="font-semibold mb-1">Discagem Automática</h3>
-                  <p className="text-muted-foreground text-sm">Agende e realize chamadas automaticamente</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                <div>
                   <h3 className="font-semibold mb-1">Relatórios Detalhados</h3>
                   <p className="text-muted-foreground text-sm">Analise dados de chamadas e performance</p>
                 </div>
@@ -104,9 +78,7 @@ export default function Telefonia() {
               <h3 className="text-2xl font-bold mb-6 text-gradient">Vantagens do VoIP</h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li>• Redução drástica de custos telefônicos</li>
-                <li>• Escalabilidade ilimitada de ramais</li>
                 <li>• Mobilidade total da equipe</li>
-                <li>• Integração com sistemas CRM</li>
                 <li>• Qualidade HD de áudio</li>
                 <li>• Manutenção simplificada</li>
                 <li>• Recursos avançados inclusos</li>

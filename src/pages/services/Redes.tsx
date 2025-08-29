@@ -18,11 +18,6 @@ export default function Redes() {
       title: "Firewalls e Segurança",
       description: "Implementação de soluções de segurança perimetral para proteção contra ameaças externas."
     },
-    {
-      icon: Monitor,
-      title: "Monitoramento 24/7",
-      description: "Supervisão contínua da rede com alertas automáticos e relatórios de performance."
-    }
   ];
 
   return (
@@ -44,7 +39,7 @@ export default function Redes() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
             <div key={index} className="service-card text-center">
               <div className="mx-auto w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
@@ -103,7 +98,6 @@ export default function Redes() {
                 <li>• Facilidade de gerenciamento</li>
                 <li>• Conformidade com padrões técnicos</li>
                 <li>• Suporte técnico especializado</li>
-                <li>• Documentação completa da rede</li>
               </ul>
             </div>
           </div>

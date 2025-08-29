@@ -6,26 +6,22 @@ export default function CertificadoDigital() {
     {
       type: "e-CPF A1",
       price: "R$ 120,00",
-      validity: "1 ano",
-      features: ["Pessoa Física", "Armazenado no computador", "Ideal para uso pessoal"]
+      validity: "1 ano"
     },
     {
       type: "e-CPF A3",
       price: "R$ 180,00",
-      validity: "3 anos",
-      features: ["Pessoa Física", "Token/Smartcard", "Maior segurança"]
+      validity: "3 anos"
     },
     {
       type: "e-CNPJ A1",
       price: "R$ 280,00",
-      validity: "1 ano",
-      features: ["Pessoa Jurídica", "Armazenado no computador", "Facilita processos"]
+      validity: "1 ano"
     },
     {
       type: "e-CNPJ A3",
       price: "R$ 380,00",
-      validity: "3 anos",
-      features: ["Pessoa Jurídica", "Token/Smartcard", "Máxima segurança"]
+      validity: "3 anos"
     }
   ];
 
@@ -114,11 +110,6 @@ export default function CertificadoDigital() {
                 <h3 className="text-xl font-bold mb-2 text-primary">{item.type}</h3>
                 <div className="text-3xl font-bold mb-2 text-gradient">{item.price}</div>
                 <p className="text-sm text-muted-foreground mb-4">Validade: {item.validity}</p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {item.features.map((feature, i) => (
-                    <li key={i}>• {feature}</li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>

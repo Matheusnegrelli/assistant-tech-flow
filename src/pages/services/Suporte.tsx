@@ -84,25 +84,17 @@ export default function Suporte() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl"></div>
             <div className="relative bg-card border border-border rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gradient">Planos de Suporte</h3>
-              <div className="space-y-4">
-                <div className="border-b border-border pb-3">
-                  <h4 className="font-semibold text-primary">Básico</h4>
-                  <p className="text-sm text-muted-foreground">Help Desk remoto em horário comercial</p>
-                </div>
-                <div className="border-b border-border pb-3">
-                  <h4 className="font-semibold text-primary">Avançado</h4>
-                  <p className="text-sm text-muted-foreground">Suporte remoto + presencial mensal</p>
-                </div>
-                <div className="border-b border-border pb-3">
-                  <h4 className="font-semibold text-primary">Premium</h4>
-                  <p className="text-sm text-muted-foreground">Suporte 24/7 + manutenção preventiva</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-primary">Enterprise</h4>
-                  <p className="text-sm text-muted-foreground">Dedicado + SLA personalizado</p>
-                </div>
-              </div>
+              <h3 className="text-2xl font-bold mb-6 text-gradient">Vantagens</h3>
+              <ul className="space-y-3 text-muted-foreground">
+                <li>• Redução de downtime</li>
+                <li>• Maior produtividade da equipe</li>
+                <li>• Segurança aprimorada</li>
+                <li>• Economia de custos operacionais</li>
+                <li>• Foco no core business</li>
+                <li>• Expertise especializada</li>
+                <li>• Atendimento personalizado</li>
+                <li>• Soluções sob medida</li>
+              </ul>
             </div>
           </div>
         </div>

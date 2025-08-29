@@ -58,30 +58,22 @@ export default function Virtualizacao() {
 
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-gradient">Tecnologias Utilizadas</h2>
-            <div className="space-y-6">
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="font-semibold mb-3 text-primary">VMware vSphere</h3>
-                <p className="text-muted-foreground text-sm">
-                  Plataforma líder de virtualização empresarial com recursos avançados 
-                  de alta disponibilidade e gerenciamento.
-                </p>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="font-semibold mb-3 text-primary">Microsoft Hyper-V</h3>
-                <p className="text-muted-foreground text-sm">
-                  Solução de virtualização nativa do Windows Server com excelente 
-                  integração ao ecossistema Microsoft.
-                </p>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="font-semibold mb-3 text-primary">Proxmox VE</h3>
-                <p className="text-muted-foreground text-sm">
-                  Plataforma open-source robusta para virtualização com interface 
-                  web intuitiva e recursos empresariais.
-                </p>
-              </div>
-            </div>
+            <h2 className="text-3xl font-bold mb-6 text-gradient">O que é Virtualização?</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              A virtualização de servidores é uma tecnologia que permite dividir um servidor físico 
+              em múltiplos servidores virtuais, cada um operando de forma independente com seu 
+              próprio sistema operacional e aplicações.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              Esta solução revolucionária maximiza o aproveitamento dos recursos de hardware, 
+              reduz custos operacionais e proporciona maior flexibilidade na gestão da 
+              infraestrutura de TI.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Ideal para empresas que buscam otimizar seus investimentos em tecnologia, 
+              melhorar a eficiência operacional e preparar sua infraestrutura para o 
+              crescimento futuro.
+            </p>
           </div>
 
           <div className="relative">
@@ -92,11 +84,8 @@ export default function Virtualizacao() {
                 <li>• Consolidação de múltiplos servidores físicos</li>
                 <li>• Snapshots para backup instantâneo</li>
                 <li>• Migração de VMs sem downtime</li>
-                <li>• Balanceamento automático de carga</li>
                 <li>• Monitoramento em tempo real</li>
                 <li>• Políticas de segurança granulares</li>
-                <li>• Clonagem rápida de ambientes</li>
-                <li>• Templates personalizados</li>
               </ul>
             </div>
           </div>
