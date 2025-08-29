@@ -2,9 +2,9 @@ import emailjs from '@emailjs/browser';
 
 // Configure EmailJS
 export const emailJSConfig = {
-  serviceId: 'YOUR_SERVICE_ID', // Substitua pela sua Service ID
-  templateId: 'YOUR_TEMPLATE_ID', // Substitua pela sua Template ID
-  publicKey: 'YOUR_PUBLIC_KEY', // Substitua pela sua Public Key
+  serviceId: 'service_rf9lum5',
+  templateId: 'template_a9ttxcl', 
+  publicKey: 'i93_efAfAHXsq0DZ_',
 };
 
 // Initialize EmailJS
