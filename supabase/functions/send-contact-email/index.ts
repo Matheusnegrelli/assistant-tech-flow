@@ -17,15 +17,19 @@ interface ContactRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  console.log("Edge function called, method:", req.method);
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    console.log("Starting email processing...");
     const { name, email, phone, message }: ContactRequest = await req.json();
 
     console.log("Received contact form submission:", { name, email, phone });
+    console.log("RESEND_API_KEY exists:", !!Deno.env.get("RESEND_API_KEY"));
 
     // Send email to matheusnegrellim@gmail.com
     const emailResponse = await resend.emails.send({
