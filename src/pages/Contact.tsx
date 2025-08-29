@@ -27,7 +27,7 @@ export default function Contact() {
   };
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5527999999999?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank");
+    window.open("https://wa.me/552731219410?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank");
   };
 
   const contactInfo = [
