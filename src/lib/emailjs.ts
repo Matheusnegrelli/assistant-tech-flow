@@ -17,10 +17,18 @@ export const sendEmail = async (templateParams: {
   message: string;
 }) => {
   try {
+    // Mapeando para as variáveis do seu template EmailJS
+    const emailParams = {
+      nome: templateParams.from_name,
+      email: templateParams.from_email,
+      telefone: templateParams.phone || 'Não informado',
+      mensagem: templateParams.message
+    };
+    
     const result = await emailjs.send(
       emailJSConfig.serviceId,
       emailJSConfig.templateId,
-      templateParams,
+      emailParams,
       emailJSConfig.publicKey
     );
     
