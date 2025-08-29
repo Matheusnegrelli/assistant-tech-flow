@@ -162,7 +162,7 @@ export default function Home() {
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="text-gradient">Soluções tecnológicas</span><br />
               <span className="text-foreground">inovadoras para impulsionar</span><br />
-              <span className="text-gradient-accent">seu negócio</span>
+              <span className="text-gradient">seu negócio</span>
             </h1>
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
               com eficiência e segurança
