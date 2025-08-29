@@ -1,5 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const handleWhatsApp = () => {
@@ -11,7 +12,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3 cursor-pointer">
             <img 
               src="/lovable-uploads/4fea8bfb-5eb8-41dd-a1f2-9c40be9dae24.png" 
               alt="Assistant Tecno" 
@@ -21,7 +22,7 @@ export default function Header() {
               <span className="font-bold text-xl text-gradient">Assistant Tecno</span>
               <span className="text-xs text-muted-foreground">Soluções em TI</span>
             </div>
-          </div>
+          </Link>
 
           {/* WhatsApp Button */}
           <div>
