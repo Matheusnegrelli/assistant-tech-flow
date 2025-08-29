@@ -18,8 +18,11 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('Form submitted with data:', formData);
+    
     try {
       // Save to database
+      console.log('Saving to database...');
       const { error: dbError } = await supabase
         .from('contact_messages')
         .insert([
@@ -33,9 +36,12 @@ export default function Contact() {
 
       if (dbError) {
         console.error('Error saving to database:', dbError);
+      } else {
+        console.log('Successfully saved to database');
       }
 
       // Send email
+      console.log('Invoking edge function...');
       const { data, error: emailError } = await supabase.functions.invoke('send-contact-email', {
         body: {
           name: formData.name,
@@ -45,6 +51,8 @@ export default function Contact() {
         }
       });
 
+      console.log('Edge function response:', { data, emailError });
+
       if (emailError) {
         console.error('Error sending email:', emailError);
         toast({
@@ -52,6 +60,7 @@ export default function Contact() {
           description: "Sua mensagem foi salva, mas houve um problema no envio do email. Entraremos em contato em breve.",
         });
       } else {
+        console.log('Email sent successfully:', data);
         toast({
           title: "Mensagem enviada!",
           description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
