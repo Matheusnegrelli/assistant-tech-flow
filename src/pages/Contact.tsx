@@ -18,7 +18,19 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('=== FORM SUBMISSION STARTED ===');
     console.log('Form submitted with data:', formData);
+    
+    // Validação básica
+    if (!formData.name || !formData.email || !formData.message) {
+      console.error('Campos obrigatórios não preenchidos');
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha nome, email e mensagem.",
+        variant: "destructive"
+      });
+      return;
+    }
     
     try {
       // Save to database
