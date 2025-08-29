@@ -36,12 +36,6 @@ export default function Contact() {
 
       if (dbError) {
         console.error('Error saving to database:', dbError);
-        toast({
-          title: "Erro no banco",
-          description: "Erro ao salvar no banco de dados",
-          variant: "destructive"
-        });
-        return;
       } else {
         console.log('Successfully saved to database');
       }
