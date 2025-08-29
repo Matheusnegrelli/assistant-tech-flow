@@ -1,87 +1,69 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
 serve(async (req: Request) => {
-  console.log("=== Function started ===");
-  
-  if (req.method === "OPTIONS") {
-    return new Response(null, { status: 200, headers: corsHeaders });
+  console.log('🚀 Edge function called - Method:', req.method);
+
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    console.log('✅ Handling CORS preflight');
+    return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    console.log("Processing request...");
+    console.log('📝 Processing contact form submission');
     
-    const resendApiKey = Deno.env.get("RESEND_API_KEY");
-    if (!resendApiKey) {
-      console.error("No API key");
-      return new Response(JSON.stringify({ error: "No API key" }), {
-        status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+    const data = await req.json();
+    console.log('📊 Received data:', JSON.stringify(data, null, 2));
+
+    // Validate required fields
+    const { name, email, message } = data;
+    if (!name || !email || !message) {
+      console.log('❌ Missing required fields');
+      return new Response(
+        JSON.stringify({ error: 'Missing required fields' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
     }
 
-    const body = await req.json();
-    const { name, email, message } = body;
-    
-    console.log("Making HTTP request to Resend API...");
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${resendApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Contato Site <onboarding@resend.dev>",
-        to: ["matheusnegrellim@gmail.com"],
-        subject: `Nova mensagem de contato - ${name}`,
-        html: `
-          <h2>Nova mensagem de contato recebida</h2>
-          <p><strong>Nome:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Mensagem:</strong> ${message}</p>
-        `,
+    // Just log the contact attempt for now - we'll add email later
+    console.log('📧 Contact form submission logged:', {
+      name,
+      email,
+      phone: data.phone || 'Not provided',
+      message: message.substring(0, 100) + '...'
+    });
+
+    // Return success for now
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: 'Contact form processed successfully' 
       }),
-    });
-
-    console.log("Resend API response status:", response.status);
-    const responseData = await response.json();
-    console.log("Resend API response:", responseData);
-
-    if (!response.ok) {
-      console.error("Resend API error:", responseData);
-      return new Response(JSON.stringify({ 
-        error: "Email service error",
-        status: response.status,
-        details: responseData 
-      }), {
-        status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
-
-    console.log("Email sent successfully!");
-    return new Response(JSON.stringify({ 
-      success: true,
-      message: "Email enviado com sucesso!",
-      emailId: responseData.id
-    }), {
-      status: 200,
-      headers: { "Content-Type": "application/json", ...corsHeaders },
-    });
+      {
+        status: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    );
 
   } catch (error: any) {
-    console.error("ERROR:", error);
-    return new Response(JSON.stringify({ 
-      error: "Server error",
-      message: error.message
-    }), {
-      status: 500,
-      headers: { "Content-Type": "application/json", ...corsHeaders },
-    });
+    console.error('💥 Edge function error:', error);
+    return new Response(
+      JSON.stringify({ 
+        error: 'Server error',
+        details: error.message 
+      }),
+      {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    );
   }
 });
