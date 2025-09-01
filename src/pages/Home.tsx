@@ -143,7 +143,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-background via-background-alt to-background py-20 lg:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-background via-background-alt to-background py-12 lg:py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15),transparent_50%)]"></div>
         <div className="absolute top-10 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
@@ -151,12 +151,12 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight text-primary">
+            <h1 className="text-3xl lg:text-5xl font-bold mb-4 leading-tight text-primary">
               Soluções tecnológicas<br />
               inovadoras para impulsionar<br />
               seu negócio
             </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-lg lg:text-xl text-muted-foreground mb-6 leading-relaxed">
               com eficiência e segurança
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -175,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-background">
+      <section className="py-10 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
@@ -192,9 +192,9 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-background-alt">
+      <section className="py-12 bg-background-alt">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
               <span className="text-gradient">Nossos Serviços</span>
             </h2>
@@ -212,7 +212,7 @@ export default function Home() {
       </section>
 
       {/* About Preview Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -266,9 +266,9 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-background-alt">
+      <section className="py-12 bg-background-alt">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
               <span className="text-gradient">Entre em Contato</span>
             </h2>
