@@ -131,18 +131,18 @@
   @media (min-width: 768px) {
     .service-card p, 
     .text-muted-foreground:not(.text-xs):not(.text-sm) {
-      font-size: var(--text-base) !important; /* 16px instead of 14px */
+      font-size: 15px !important; /* Meio termo entre 14px e 16px */
     }
     
     .service-card h3 {
-      font-size: var(--text-xl) !important; /* 20px instead of 18px */
+      font-size: var(--text-lg) !important; /* 18px - tamanho original melhorado */
     }
 
     /* Better spacing for descriptions */
     .service-card .description,
     .feature-description {
-      font-size: var(--text-lg) !important; /* 18px */
-      line-height: 1.7;
+      font-size: var(--text-base) !important; /* 16px - meio termo */
+      line-height: 1.65;
     }
   }
 }
