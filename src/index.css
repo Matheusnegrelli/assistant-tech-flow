@@ -123,43 +123,43 @@
 
   body {
     @apply bg-background text-foreground;
-    font-size: 16px; /* Base font size for better readability */
-    line-height: 1.6; /* Improved line height */
+    font-size: 14px; /* Tamanho base reduzido para página mais compacta */
+    line-height: 1.5; /* Line height mais compacto */
   }
 
-  /* Enhanced typography for desktop */
+  /* Typography compacta para desktop */
   @media (min-width: 768px) {
     .service-card p, 
     .text-muted-foreground:not(.text-xs):not(.text-sm) {
-      font-size: 14.5px !important; /* Bem próximo ao original */
+      font-size: 13px !important; /* Texto menor */
     }
     
     .service-card h3 {
-      font-size: var(--text-lg) !important; /* 18px */
+      font-size: 16px !important; /* Títulos menores */
     }
 
-    /* Better spacing for descriptions */
+    /* Descriptions mais compactas */
     .service-card .description,
     .feature-description {
-      font-size: 15px !important; /* Levemente maior que o padrão */
-      line-height: 1.6;
+      font-size: 13px !important; /* Descrições menores */
+      line-height: 1.4;
     }
   }
 }
 
 @layer components {
-  /* Hero Button Variants */
+  /* Hero Button Variants - Compactos */
   .btn-hero {
-    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground px-6 py-3 rounded-lg font-semibold text-base shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
   }
   
   .btn-outline-tech {
-    @apply border-2 border-primary text-primary bg-transparent px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+    @apply border-2 border-primary text-primary bg-transparent px-4 py-2 rounded-lg font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300;
   }
   
-  /* Service Cards */
+  /* Service Cards - Mais compactos */
   .service-card {
-    @apply bg-card border border-border rounded-xl p-6 hover:bg-card-hover hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1;
+    @apply bg-card border border-border rounded-xl p-4 hover:bg-card-hover hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1;
   }
   
   /* WhatsApp Button */
