@@ -45,8 +45,8 @@ export default function Telefonia() {
               <div className="mx-auto w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
                 <benefit.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-3">{benefit.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{benefit.description}</p>
+              <h3 className="text-lg lg:text-xl font-semibold mb-3">{benefit.title}</h3>
+              <p className="text-muted-foreground text-base lg:text-lg leading-relaxed description">{benefit.description}</p>
             </div>
           ))}
         </div>
@@ -58,15 +58,15 @@ export default function Telefonia() {
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                 <div>
-                  <h3 className="font-semibold mb-1">Transferência de Chamadas</h3>
-                  <p className="text-muted-foreground text-sm">Transfira chamadas facilmente entre ramais e departamentos</p>
+                  <h3 className="font-semibold mb-1 text-base lg:text-lg">Transferência de Chamadas</h3>
+                  <p className="text-muted-foreground text-sm lg:text-base">Transfira chamadas facilmente entre ramais e departamentos</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                 <div>
-                  <h3 className="font-semibold mb-1">Relatórios Detalhados</h3>
-                  <p className="text-muted-foreground text-sm">Analise dados de chamadas e performance</p>
+                  <h3 className="font-semibold mb-1 text-base lg:text-lg">Relatórios Detalhados</h3>
+                  <p className="text-muted-foreground text-sm lg:text-base">Analise dados de chamadas e performance</p>
                 </div>
               </div>
             </div>
@@ -95,22 +95,22 @@ export default function Telefonia() {
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-4">
                 1
               </div>
-              <h3 className="font-semibold mb-2">Análise</h3>
-              <p className="text-muted-foreground text-sm">Avaliamos sua necessidade atual de telefonia</p>
+              <h3 className="font-semibold mb-2 text-base lg:text-lg">Análise</h3>
+              <p className="text-muted-foreground text-sm lg:text-base">Avaliamos sua necessidade atual de telefonia</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-4">
                 2
               </div>
-              <h3 className="font-semibold mb-2">Instalação</h3>
-              <p className="text-muted-foreground text-sm">Configuramos todo o sistema de telefonia IP</p>
+              <h3 className="font-semibold mb-2 text-base lg:text-lg">Instalação</h3>
+              <p className="text-muted-foreground text-sm lg:text-base">Configuramos todo o sistema de telefonia IP</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-4">
                 3
               </div>
-              <h3 className="font-semibold mb-2">Treinamento</h3>
-              <p className="text-muted-foreground text-sm">Capacitamos sua equipe para usar todos os recursos</p>
+              <h3 className="font-semibold mb-2 text-base lg:text-lg">Treinamento</h3>
+              <p className="text-muted-foreground text-sm lg:text-base">Capacitamos sua equipe para usar todos os recursos</p>
             </div>
           </div>
         </div>

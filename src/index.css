@@ -19,6 +19,14 @@
     --accent-foreground: 222 47% 11%;
     --accent-hover: 45 93% 48%;
 
+    /* Enhanced Typography Scale */
+    --text-xs: 0.75rem;     /* 12px */
+    --text-sm: 0.875rem;    /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-lg: 1.125rem;    /* 18px */
+    --text-xl: 1.25rem;     /* 20px */
+    --text-2xl: 1.5rem;     /* 24px */
+
     /* Background System */
     --background: 218 27% 97%;
     --background-alt: 220 13% 95%;
@@ -115,6 +123,27 @@
 
   body {
     @apply bg-background text-foreground;
+    font-size: 16px; /* Base font size for better readability */
+    line-height: 1.6; /* Improved line height */
+  }
+
+  /* Enhanced typography for desktop */
+  @media (min-width: 768px) {
+    .service-card p, 
+    .text-muted-foreground:not(.text-xs):not(.text-sm) {
+      font-size: var(--text-base) !important; /* 16px instead of 14px */
+    }
+    
+    .service-card h3 {
+      font-size: var(--text-xl) !important; /* 20px instead of 18px */
+    }
+
+    /* Better spacing for descriptions */
+    .service-card .description,
+    .feature-description {
+      font-size: var(--text-lg) !important; /* 18px */
+      line-height: 1.7;
+    }
   }
 }
 

@@ -15,10 +15,10 @@ const ServiceCard = memo(({ icon, title, description, href }: ServiceCardProps) 
   return (
     <div className="service-card group">
       <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
+      <h3 className="text-xl lg:text-2xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
         {title}
       </h3>
-      <p className="text-muted-foreground mb-6 leading-relaxed">
+      <p className="text-muted-foreground text-base lg:text-lg mb-6 leading-relaxed description">
         {description}
       </p>
       <Link to={href}>

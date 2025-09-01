@@ -26,9 +26,6 @@ export default function Home() {
     const phone = formData.get('phone') as string;
     const message = formData.get('message') as string;
 
-    console.log('=== FORM SUBMISSION STARTED ===');
-    console.log('Form submitted with data:', { name, email, phone, message });
-
     try {
       // Validate required fields
       if (!name || !email || !message) {
@@ -39,11 +36,8 @@ export default function Home() {
         });
         return;
       }
-
-      console.log('=== VALIDATION PASSED ===');
       
       // Send email using EmailJS
-      console.log('Sending email via EmailJS...');
       const emailResult = await sendEmail({
         from_name: name,
         from_email: email,
@@ -52,14 +46,12 @@ export default function Home() {
       });
 
       if (emailResult.success) {
-        console.log('Email sent successfully via EmailJS');
         toast({
           title: "Mensagem enviada!",
           description: "Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.",
         });
         form.reset();
       } else {
-        console.error('EmailJS error:', emailResult.error);
         toast({
           title: "Erro ao enviar email",
           description: "Ocorreu um erro ao enviar o email. Tente novamente ou entre em contato pelo WhatsApp.",
@@ -68,7 +60,6 @@ export default function Home() {
       }
 
     } catch (error) {
-      console.error('Form submission error:', error);
       toast({
         title: "Erro",
         description: "Ocorreu um erro ao enviar sua mensagem. Tente novamente.",
@@ -192,8 +183,8 @@ export default function Home() {
                 <div className="mx-auto w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+              <h3 className="text-xl lg:text-2xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground text-base lg:text-lg">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -336,7 +327,7 @@ export default function Home() {
                 <p className="text-muted-foreground mb-6">
                   Para um atendimento mais rápido, entre em contato diretamente pelo WhatsApp.
                 </p>
-                <Button onClick={() => window.open("https://wa.me/552731219410?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank")} className="btn-hero w-full">
+                <Button onClick={() => window.open("https://wa.me/552731219410?text=Olá! Gostaria de saber mais sobre os serviços da Assistant Tecno.", "_blank", "noopener,noreferrer")} className="btn-hero w-full">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Abrir WhatsApp
                 </Button>

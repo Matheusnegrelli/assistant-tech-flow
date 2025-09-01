@@ -50,8 +50,8 @@ export default function Consultoria() {
               <div className="mx-auto w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
                 <service.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-3">{service.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+              <h3 className="text-lg lg:text-xl font-semibold mb-3">{service.title}</h3>
+              <p className="text-muted-foreground text-base lg:text-lg leading-relaxed description">{service.description}</p>
             </div>
           ))}
         </div>
@@ -65,8 +65,8 @@ export default function Consultoria() {
                   1
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Análise Inicial</h3>
-                  <p className="text-muted-foreground text-sm">Mapeamento completo do ambiente tecnológico atual</p>
+                  <h3 className="font-semibold mb-2 text-base lg:text-lg">Análise Inicial</h3>
+                  <p className="text-muted-foreground text-sm lg:text-base">Mapeamento completo do ambiente tecnológico atual</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -74,8 +74,8 @@ export default function Consultoria() {
                   2
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Diagnóstico</h3>
-                  <p className="text-muted-foreground text-sm">Identificação de gargalos, vulnerabilidades e oportunidades</p>
+                  <h3 className="font-semibold mb-2 text-base lg:text-lg">Diagnóstico</h3>
+                  <p className="text-muted-foreground text-sm lg:text-base">Identificação de gargalos, vulnerabilidades e oportunidades</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -83,8 +83,8 @@ export default function Consultoria() {
                   3
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Planejamento</h3>
-                  <p className="text-muted-foreground text-sm">Elaboração de estratégias e cronograma de implementação</p>
+                  <h3 className="font-semibold mb-2 text-base lg:text-lg">Planejamento</h3>
+                  <p className="text-muted-foreground text-sm lg:text-base">Elaboração de estratégias e cronograma de implementação</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -92,8 +92,8 @@ export default function Consultoria() {
                   4
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Execução</h3>
-                  <p className="text-muted-foreground text-sm">Implementação das soluções com acompanhamento contínuo</p>
+                  <h3 className="font-semibold mb-2 text-base lg:text-lg">Execução</h3>
+                  <p className="text-muted-foreground text-sm lg:text-base">Implementação das soluções com acompanhamento contínuo</p>
                 </div>
               </div>
             </div>
