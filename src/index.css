@@ -131,17 +131,17 @@
   @media (min-width: 768px) {
     .service-card p, 
     .text-muted-foreground:not(.text-xs):not(.text-sm) {
-      font-size: 14.5px !important; /* Bem próximo ao original */
+      font-size: 14px !important; /* Tamanho reduzido */
     }
     
     .service-card h3 {
-      font-size: var(--text-lg) !important; /* 18px */
+      font-size: 17px !important; /* Títulos um pouco menores */
     }
 
     /* Better spacing for descriptions */
     .service-card .description,
     .feature-description {
-      font-size: 15px !important; /* Levemente maior que o padrão */
+      font-size: 14.5px !important; /* Descrições menores */
       line-height: 1.6;
     }
   }
