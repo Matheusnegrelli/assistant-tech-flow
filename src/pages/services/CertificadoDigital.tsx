@@ -5,22 +5,22 @@ export default function CertificadoDigital() {
   const types = [
     {
       type: "e-CPF A1",
-      price: "R$ 120,00",
+      price: "R$ 139,00",
       validity: "1 ano"
     },
     {
       type: "e-CPF A3",
-      price: "R$ 180,00",
+      price: "R$ 199,00",
       validity: "3 anos"
     },
     {
       type: "e-CNPJ A1",
-      price: "R$ 280,00",
+      price: "R$ 179,00",
       validity: "1 ano"
     },
     {
       type: "e-CNPJ A3",
-      price: "R$ 380,00",
+      price: "R$ 259,00",
       validity: "3 anos"
     }
   ];
